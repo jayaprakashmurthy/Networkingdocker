@@ -43,7 +43,7 @@
       copy:
         content: |
           {
-            "bip": "172.168.10.3/30"
+            "bip": "172.168.10.2/30"
           }
         dest: /etc/docker/daemon.json
 
