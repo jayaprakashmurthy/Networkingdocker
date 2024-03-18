@@ -20,13 +20,13 @@ Prerequisites
 
  Repository Structure
 
-- loke.yml`: Ansible playbook for deploying Docker containers.
+- jpm.yml`: Ansible playbook for deploying Docker containers.
 - `README.md`: This file, providing an overview of the repository and instructions.
 - `network_diagram.png`: Network diagram illustrating the setup.
 
  Instructions
 
 1. Clone this repository to your local machine.
-2. Modify the Ansible playbook (`loke.yml`) as needed, specifying the appropriate target hosts and configurations.
-3. Run the Ansible playbook using the command `ansible-playbook docker_deploy.yml`.
+2. Modify the Ansible playbook (`jpm.yml`) as needed, specifying the appropriate target hosts and configurations.
+3. Run the Ansible playbook using the command `ansible-playbook docker_d.yml`.
 4. Verify the deployment and accessibility of the Apache service from the host machine.
