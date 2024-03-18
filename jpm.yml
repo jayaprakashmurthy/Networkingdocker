@@ -32,7 +32,7 @@
         enabled: yes
 
 - name: Changing Docker daemon configuration file network
-  hosts: loke_node
+  hosts: jpm_node
   tasks:
     - name: Create Docker configuration directory
       file:
@@ -53,7 +53,7 @@
         state: reloaded
 
 - name: Deploy Apache Docker container
-  hosts: loke_node
+  hosts: jpm_node
   tasks:
     - name: Run Apache Docker container
       docker_container:
