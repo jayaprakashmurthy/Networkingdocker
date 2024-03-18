@@ -22,7 +22,7 @@ Prerequisites
 
 - jpm.yml`: Ansible playbook for deploying Docker containers.
 - `README.md`: This file, providing an overview of the repository and instructions.
-- `flow.png`: Network diagram illustrating the setup.
+- `Screenshot 2024-03-18 011144.png`: Network diagram illustrating the setup.
 
  Instructions
 
