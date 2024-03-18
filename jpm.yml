@@ -1,0 +1,64 @@
+ name: Ensure Docker is installed and running
+  hosts: jpm_node
+  become: yes
+  tasks:
+    - name: Install required packages for Docker
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce-stable
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/9/$basearch/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        enabled: yes
+
+    - name: Install Docker
+      package:
+        name: docker-ce
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+- name: Changing Docker daemon configuration file network
+  hosts: loke_node
+  tasks:
+    - name: Create Docker configuration directory
+      file:
+        path: /etc/docker
+        state: directory
+
+    - name: Configure Docker daemon network
+      copy:
+        content: |
+          {
+            "bip": "172.168.10.3/30"
+          }
+        dest: /etc/docker/daemon.json
+
+    - name: Reload Docker daemon
+      service:
+        name: docker
+        state: reloaded
+
+- name: Deploy Apache Docker container
+  hosts: loke_node
+  tasks:
+    - name: Run Apache Docker container
+      docker_container:
+        name: "apache"
+        image: "httpd:latest"
+        state: started
+        ports:
+          - "80:80"
